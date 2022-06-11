@@ -1,5 +1,6 @@
 import operations from "./operations";
 import { Iodine } from '@kingshott/iodine';
+import { mutateDom } from "./mutation";
 
 const iodine = new Iodine();
 
@@ -30,6 +31,20 @@ document.addEventListener('alpine:init', () => {
             }
             return
         }
+    })
+
+    Alpine.directive('fir-text', (el, { expression }, { evaluateLater, effect }) => {
+        let evaluate = evaluateLater(expression)
+        effect(() => {
+            evaluate(value => {
+                if (value == undefined) {
+                    return;
+                }
+                mutateDom(() => {
+                    el.textContent = value
+                })
+            })
+        })
     })
 
     const emit = eventEmitter(connectURL, [], (eventData) => operations[eventData.op](eventData), updateStore);

@@ -12,6 +12,7 @@
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <script defer src="http://localhost:8000/cdn.js"></script>
     <script defer src="https://unpkg.com/@adnaanx/fir@latest/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
@@ -21,7 +22,8 @@
         <div class="columns is-mobile is-centered is-vcentered">
             <div x-data class="column is-one-third-desktop has-text-centered is-narrow">
                 <div>
-                    <div id="count" x-text="$store.fir.count || {{.count}}">{{.count}}</div>
+                    <!-- <div id="count" x-text="$store.fir.count || {{.count}}">{{.count}}</div> -->
+                    <div id="count" x-fir-text="$store.fir.count">{{.count}}</div>
                     <button class="button has-background-primary" @click="$fir.emit('inc')">+
                     </button>
                     <button class="button has-background-primary" @click="$fir.emit('dec')">-
